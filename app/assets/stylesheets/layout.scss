@@ -18,8 +18,14 @@ body { padding-top: ($navbarHeight + 20) }
   @include opacity(0.9);
 }
 
+td {
+  @include transition(all .5s ease-in-out);
+}
+
 .done {
   text-decoration: line-through;
+  color: #999;
+  font-style: italic;
 }
 
 .centered, table#tasks tr :last-child, table#tasks tr :first-child {

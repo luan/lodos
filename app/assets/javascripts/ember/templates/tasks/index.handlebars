@@ -4,7 +4,7 @@
     {{submit "<i class='icon-white icon-plus'></i> Add Task" submitClass="btn btn-success btn-large"}}
   {{/formFor}}
 
-  <table id="tasks" class="table table-bordered table-stripped">
+  <table id="tasks" class="table table-bordered table-striped">
     <thead>
       <tr>
         <th class="span1">Done?</th>
@@ -20,7 +20,7 @@
           </td>
           <td {{bindAttr class="task.done"}}>{{task.description}}</td>
           <td>
-            <a class="delete btn btn-danger btn-mini" {{action "delete" target="task"}}>X</a>
+            <a class="delete btn btn-danger btn-mini" {{action "delete"}}>X</a>
           </td>
         {{/view}}
       {{/each}}
