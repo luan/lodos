@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lodos</title>
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <link rel="icon" type="image/png" href="<%= asset_path('favicon.png') %>">
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <%= yield %>
+    <%= javascript_include_tag "application" %>
+  </body>
+</html>

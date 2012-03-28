@@ -1,0 +1,33 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#">Lodos</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Menu</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  {{dynamicView}}
+</div>
+
+{{#view Ember.FlashView id="flash-view"}}
+  {{#if content.icon}}
+    <i {{bindAttr class="content.icon"}}></i>
+  {{/if}}
+  {{#if content.heading}}
+    <strong>{{content.heading}}</strong>
+  {{/if}}
+  {{content.message}}
+{{/view}}

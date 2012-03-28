@@ -1,0 +1,23 @@
+@import "bootstrap";
+
+body { padding-top: ($navbarHeight + 20) }
+
+@import "bootstrap-responsive";
+@import "datepicker";
+
+#flash-view {
+  position: fixed;
+  top: 0px;
+  z-index: 2000;
+  padding: 1em;
+  margin-left: 40%;
+  @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.3));
+  border: 1px solid;
+  border-top: 0;
+  @include border-radius(0);
+  @include opacity(0.9);
+}
+
+@media (max-width: 979px) {
+}
+
