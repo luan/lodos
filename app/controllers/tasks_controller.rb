@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_filter :filter_nulls
+
   def index
     @tasks = Task.all
     render json: { tasks: @tasks }
@@ -25,5 +27,11 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.destroy
     render json: { task: @task }
+  end
+
+  private
+
+  def filter_nulls
+    params[:task].reject! {|k, v| v == 'null'} if params[:task]
   end
 end

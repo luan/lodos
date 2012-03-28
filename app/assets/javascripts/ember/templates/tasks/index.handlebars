@@ -1,32 +1,39 @@
-<div class="span6">
-  {{#formFor "task" id="task" class="form-horizontal centered"}}
-    {{input "description" inputClass="input-large-text" showWrapper=false placeholder="Task Description"}}
-    {{submit "<i class='icon-white icon-plus'></i> Add Task" submitClass="btn btn-success btn-large"}}
-  {{/formFor}}
+{{#formFor "task" id="task" class="form-inline centered"}}
+  <label>
+    Description
+    {{input "description" inputClass="span6" showWrapper=false placeholder="My new task"}}
+  </label>
+  <label>
+    Deadline
+    {{input "deadline" inputClass="input-medium datetime-input" showWrapper=false placeholder="yyyy-mm-dd HH:MM"}}
+  </label>
+  {{submit "<i class='icon-white icon-plus'></i> Add Task" submitClass="btn btn-success btn-large"}}
+{{/formFor}}
 
-  <ul id="tasks">
-    {{#each tasks.reverse}}
-      {{#view Lodos.TaskShow taskBinding="this"}}
-        <ul class="horizontal-list">
-          <li>
-            {{view Ember.Checkbox valueBinding="task.done" class="mark-as-done"}}
-          </li>
-          <li {{bindAttr class="task.done"}}>{{task.description}}</li>
-          <li class="right delete">
-            <a class="delete btn btn-danger btn-mini" {{action "delete"}}>X</a>
-          </li>
-          <li class="right">
-            <span class="label label-success">
-              <i class="icon-white icon-plus"></i>
-              {{task.formattedCreatedAt}}
-            </span>
+<ul id="tasks">
+  {{#each tasks.reverse}}
+    {{#view Lodos.TaskShow taskBinding="this"}}
+      <ul class="horizontal-list">
+        <li>
+          {{view Ember.Checkbox valueBinding="task.done" class="mark-as-done"}}
+        </li>
+        <li {{bindAttr class="task.done"}}>{{task.description}}</li>
+        <li class="right delete">
+          <a class="delete btn btn-danger btn-mini" {{action "delete"}}>X</a>
+        </li>
+        <li class="right">
+          <span class="label label-success">
+            <i class="icon-white icon-plus"></i>
+            {{task.formattedCreatedAt}}
+          </span>
+          {{#if task.deadline}}
             <span class="label label-important">
               <i class="icon-white icon-exclamation-sign"></i>
-              {{task.formattedCreatedAt}}
+              {{task.deadline}}
             </span>
-          </li>
-        </ul>
-      {{/view}}
-    {{/each}}
-  </ul>
-</div>
+          {{/if}}
+        </li>
+      </ul>
+    {{/view}}
+  {{/each}}
+</ul>

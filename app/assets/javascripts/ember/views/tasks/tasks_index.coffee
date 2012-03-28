@@ -21,3 +21,7 @@ Lodos.TasksIndex = Ember.View.extend
 
   _resetTask: ->
     @set 'task', Ember.Object.create()
+
+  didInsertElement: ->
+    @_super()
+    @$('.datetime-input').mask('9999-99-99 99:99')

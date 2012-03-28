@@ -2,6 +2,7 @@ Lodos.Task = DS.Model.extend
   primaryKey: '_id'
   description: DS.attr('string')
   done: DS.attr('boolean')
+  deadline: DS.attr('date')
   created_at: DS.attr('date')
   
   doneChanged: (->
