@@ -93,7 +93,7 @@ DS.RESTAdapter = DS.Adapter.extend({
     this.ajax("/" + this.pluralize(root), "POST", {
       data: data,
       success: function(json) {
-        store.didCreateRecord(model, json);
+        store.didCreateRecord(model, json[root]);
       }
     });
   },

@@ -5,6 +5,10 @@
 
 <ul id="tasks">
   {{#each tasks.reverse}}
-    <li>{{description}}</li>
+    {{#view Lodos.TaskShow taskBinding="this"}}
+      {{view Ember.Checkbox valueBinding="task.done" class="mark-as-done"}}
+      {{task.description}}
+      <a class="delete" {{action "delete" target="task"}}>X</a>
+    {{/view}}
   {{/each}}
 </ul>

@@ -20,7 +20,7 @@ When /^I submit an empty task$/ do
 end
 
 Then /^I should see it on the top of the list$/ do
-  find('#tasks').first('li').text.should eq(Task.last.description)
+  find('#tasks').first('li').should have_content(Task.last.description)
 end
 
 Given /^there are (\d+) tasks saved$/ do |count|
@@ -47,4 +47,25 @@ Then /^the form should get highlighted$/ do
   within '#task' do
     find_field('description').parent.parent.should have_css('.error')
   end
+end
+
+When /^I delete a task$/ do
+  find('#tasks').first('.delete').click
+end
+
+Then /^I should not see it on the list$/ do
+  page.should_not have_content('Task 5')
+end
+
+When /^I mark a task as done$/ do
+  find('#tasks').first('input[type="checkbox"]').set(true)
+end
+
+Then /^I should see it strikethrough$/ do
+  find('#tasks').should have_selector('.done')
+end
+
+Then /^there should be (\d+) task done$/ do |count|
+  count = count.to_i
+  Task.where(done: true).count.should eq(count)
 end

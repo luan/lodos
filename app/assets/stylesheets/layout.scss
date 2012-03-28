@@ -18,6 +18,10 @@ body { padding-top: ($navbarHeight + 20) }
   @include opacity(0.9);
 }
 
+li.done {
+  text-decoration: line-through;
+}
+
 @media (max-width: 979px) {
 }
 

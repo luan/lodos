@@ -1,5 +1,5 @@
 @javascript
-Feature: Create Task
+Feature: Create Tasks
   In order not to forget something to do
   As a user, I want to create a task
   
