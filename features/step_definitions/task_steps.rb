@@ -3,7 +3,7 @@ task_description = 'Gorgeous task!'
 def submit_task(description)
   within '#task' do
     fill_in 'description', with: description
-    click_button 'Go'
+    click_button 'Add Task'
   end
 end
 
@@ -20,7 +20,7 @@ When /^I submit an empty task$/ do
 end
 
 Then /^I should see it on the top of the list$/ do
-  find('#tasks').first('li').should have_content(Task.last.description)
+  find('#tasks tbody').first('tr').should have_content(Task.last.description)
 end
 
 Given /^there are (\d+) tasks saved$/ do |count|
@@ -41,12 +41,6 @@ end
 
 Then /^I should see an error alert$/ do
   page.should have_selector('.alert-error')
-end
-
-Then /^the form should get highlighted$/ do
-  within '#task' do
-    find_field('description').parent.parent.should have_css('.error')
-  end
 end
 
 When /^I delete a task$/ do

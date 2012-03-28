@@ -1,14 +1,29 @@
-{{#formFor "task" id="task"}}
-  {{input "description"}}
-  {{submit "Go"}}
-{{/formFor}}
+<div class="span6">
+  {{#formFor "task" id="task" class="form-horizontal centered"}}
+    {{input "description" inputClass="input-large-text" showWrapper=false placeholder="Task Description"}}
+    {{submit "<i class='icon-white icon-plus'></i> Add Task" submitClass="btn btn-success btn-large"}}
+  {{/formFor}}
 
-<ul id="tasks">
-  {{#each tasks.reverse}}
-    {{#view Lodos.TaskShow taskBinding="this"}}
-      {{view Ember.Checkbox valueBinding="task.done" class="mark-as-done"}}
-      {{task.description}}
-      <a class="delete" {{action "delete" target="task"}}>X</a>
-    {{/view}}
-  {{/each}}
-</ul>
+  <table id="tasks" class="table table-bordered table-stripped">
+    <thead>
+      <tr>
+        <th class="span1">Done?</th>
+        <th>Description</th>
+        <th class="span1">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each tasks.reverse}}
+        {{#view Lodos.TaskShow taskBinding="this"}}
+          <td>
+            {{view Ember.Checkbox valueBinding="task.done" class="mark-as-done"}}
+          </td>
+          <td {{bindAttr class="task.done"}}>{{task.description}}</td>
+          <td>
+            <a class="delete btn btn-danger btn-mini" {{action "delete" target="task"}}>X</a>
+          </td>
+        {{/view}}
+      {{/each}}
+    </tbody>
+  </table>
+</div>

@@ -8,21 +8,16 @@ Lodos.TasksIndex = Ember.View.extend
   
   taskSubmit: (event) ->
     event.preventDefault()
-    id = @$('input[name="description"]').attr('id').replace('input', '')
-    view = Ember.View.views[id]
+    $input = @$('input[name="description"]')
     
     if @task.description
       @tasks.createTask @task
       @_resetTask()
       Lodos.flash 'success', 'created successfully!', 'Task', 'icon-ok-sign'
-      @$(id).removeClass "error"
-      view.set 'error', null
     else
-      Lodos.flash 'error', 'failed to create!', 'Task', 'icon-remove-sign'
-      view.set 'error', "can't be blank"
-      @$(id).addClass "error"
+      Lodos.flash 'error', 'failed to create, fill in the description!', 'Task', 'icon-remove-sign'
 
-    @$('input[name="description"]').focus()
+    $input.focus()
 
   _resetTask: ->
     @set 'task', Ember.Object.create()

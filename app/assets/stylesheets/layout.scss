@@ -18,8 +18,26 @@ body { padding-top: ($navbarHeight + 20) }
   @include opacity(0.9);
 }
 
-li.done {
+.done {
   text-decoration: line-through;
+}
+
+.centered, table#tasks tr :last-child, table#tasks tr :first-child {
+  text-align: center;
+  label { margin: 0; }
+  
+  input[type="checkbox"] {
+    margin: auto;
+    height: 20px;
+    @include scale(2.0);
+  }
+}
+
+.input-large-text {
+  font-size: 21px;
+  height: 25px;
+  line-height: 25px;
+  width: 250px;
 }
 
 @media (max-width: 979px) {

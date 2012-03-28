@@ -1,3 +1,3 @@
 Lodos.TaskShow = Ember.View.extend
-  tagName: "li"
+  tagName: "tr"
   classNameBindings: ['task.done']

@@ -14,7 +14,6 @@ Feature: Create Tasks
     Given I am on the tasks page
     When I submit an empty task
     Then I should see an error alert
-    And the form should get highlighted
     And there should be 0 tasks saved
   
   Scenario: Multiple tasks creation
