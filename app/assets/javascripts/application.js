@@ -11,9 +11,8 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require_tree ./lib
 //= require jquery_ujs
 //= require bootstrap
-//= require ember-dev
+//= require_tree ./lib
 //= require ember/lodos
 //= require_tree .

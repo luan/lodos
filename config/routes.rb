@@ -1,5 +1,4 @@
 Lodos::Application.routes.draw do
-  get "home/index"
-
+  resources :tasks
   root to: "home#index"
 end

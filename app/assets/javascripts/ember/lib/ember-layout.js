@@ -1,4 +1,3 @@
-
 (function(exports) {
 var get = Ember.get, set = Ember.set, meta = Ember.meta;
 
@@ -196,13 +195,5 @@ Ember.LayoutState = Ember.State.extend({
     return state && state.get('view');
   }).property()
 });
-
-})({});
-
-
-(function(exports) {
-require("ember-layout/layout_state");
-
-require("ember-layout/helpers/dynamic_view");
 
 })({});

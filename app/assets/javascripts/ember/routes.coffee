@@ -3,4 +3,4 @@ Lodos.routeManager = Ember.RouteManager.create
 
   root: Em.LayoutState.create
     route: ''
-    viewClass: Lodos.HomeIndex
+    viewClass: Lodos.TasksIndex

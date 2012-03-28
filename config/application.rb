@@ -26,8 +26,6 @@ module Lodos
       g.styleshees false
     end
 
-    config.time_zone = "Brasilia"
-    config.i18n.default_locale = :'pt-BR'
     config.encoding = "utf-8"
     config.filter_parameters += [:password]
     

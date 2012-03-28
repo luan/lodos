@@ -1,0 +1,10 @@
+{{#formFor "task" id="task"}}
+  {{input "description"}}
+  {{submit "Go"}}
+{{/formFor}}
+
+<ul id="tasks">
+  {{#each tasks.reverse}}
+    <li>{{description}}</li>
+  {{/each}}
+</ul>

@@ -7,11 +7,15 @@
 #= require_tree ./templates
 #= require ./routes
 
-window.Lodos = Ember.Application.create
+window.Lodos = Ember.Application.create  
   layout: Ember.View.create
     templateName: 'ember/templates/layouts/application'
 
   flash: (type, message, heading, icon) ->
     Ember.flashQueue.pushFlash type, message, heading, icon
+
+Lodos.store = DS.Store.create
+  adapter: DS.RESTAdapter.create
+    bulkCommit: false      
 
 jQuery -> Lodos.layout.appendTo 'body'

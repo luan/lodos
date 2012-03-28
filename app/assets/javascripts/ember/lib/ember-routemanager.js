@@ -547,9 +547,3 @@ Ember.RouteManager = Ember.StateManager.extend({
 });
 
 })({});
-
-
-(function(exports) {
-require("ember-routemanager/route_manager");
-
-})({});
