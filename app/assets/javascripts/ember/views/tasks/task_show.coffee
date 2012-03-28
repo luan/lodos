@@ -1,14 +1,15 @@
 Lodos.TaskShow = Ember.View.extend
-  tagName: "tr"
+  tagName: "li"
   classNameBindings: ['task.done']
     
   delete: ->
-    @$().hide 'fade', =>
+    @$().slideUp =>
       @task.delete()
   
   didInsertElement: ->
     @$().hide()
-    if Lodos.tasksController.get('reverse').indexOf(@task) is 0
-      @$().show 'fade'
+    if Lodos.tasksController.get 'animate'
+      @$().slideDown()
+      Lodos.tasksController.set 'animate', false
     else
       @$().show()

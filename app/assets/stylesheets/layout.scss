@@ -1,3 +1,5 @@
+@import 'compass/reset';
+@import 'compass';
 @import "bootstrap";
 
 body { padding-top: ($navbarHeight + 20) }
@@ -18,14 +20,43 @@ body { padding-top: ($navbarHeight + 20) }
   @include opacity(0.9);
 }
 
-td {
+ul {
+  list-style: none;
   @include transition(all .5s ease-in-out);
+
+  &#tasks > li {
+    padding: 5px;
+    border: 1px dotted #666;
+    border-left: 11px double #DADADA;
+    margin-top: -1px;
+    @include border-radius(0 10px 10px 0);
+  }
+
+  &.horizontal-list {
+    height: 20px;
+
+    li {
+      margin: auto;
+      padding: 0;
+      line-height: 20px;
+
+      span { margin-left: 5px; }
+    }
+
+    li:first-child { margin: 0 5px; }
+    li:first-child input { @include scale(1.7); }
+    li:first-child, li.right { text-align: center; }
+    li.right { float: right; font-size: 10px; }
+    li.delete { line-height: initial; }
+
+    @include horizontal-list;
+  }
 }
 
 .done {
   text-decoration: line-through;
-  color: #999;
   font-style: italic;
+  @include opacity(0.5);
 }
 
 .centered, table#tasks tr :last-child, table#tasks tr :first-child {

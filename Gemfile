@@ -12,6 +12,7 @@ group :assets do
   gem 'uglifier', '1.2.3'
 end
 
+gem 'compass-rails'
 gem 'jquery-rails', '2.0.1'
 gem 'ember-rails', git: 'git://github.com/emberjs/ember-rails.git'
 

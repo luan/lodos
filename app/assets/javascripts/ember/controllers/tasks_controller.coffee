@@ -5,6 +5,7 @@ Lodos.tasksController = Ember.ArrayController.create
     Lodos.store.createRecord Lodos.Task,
       description: task.description
     Lodos.store.commit()
+    @set 'animate', true
     
   reverse: (->
     @content.toArray().reverse();

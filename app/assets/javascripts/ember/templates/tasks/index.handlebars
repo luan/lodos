@@ -4,26 +4,29 @@
     {{submit "<i class='icon-white icon-plus'></i> Add Task" submitClass="btn btn-success btn-large"}}
   {{/formFor}}
 
-  <table id="tasks" class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th class="span1">Done?</th>
-        <th>Description</th>
-        <th class="span1">Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each tasks.reverse}}
-        {{#view Lodos.TaskShow taskBinding="this"}}
-          <td>
+  <ul id="tasks">
+    {{#each tasks.reverse}}
+      {{#view Lodos.TaskShow taskBinding="this"}}
+        <ul class="horizontal-list">
+          <li>
             {{view Ember.Checkbox valueBinding="task.done" class="mark-as-done"}}
-          </td>
-          <td {{bindAttr class="task.done"}}>{{task.description}}</td>
-          <td>
+          </li>
+          <li {{bindAttr class="task.done"}}>{{task.description}}</li>
+          <li class="right delete">
             <a class="delete btn btn-danger btn-mini" {{action "delete"}}>X</a>
-          </td>
-        {{/view}}
-      {{/each}}
-    </tbody>
-  </table>
+          </li>
+          <li class="right">
+            <span class="label label-success">
+              <i class="icon-white icon-plus"></i>
+              {{task.formattedCreatedAt}}
+            </span>
+            <span class="label label-important">
+              <i class="icon-white icon-exclamation-sign"></i>
+              {{task.formattedCreatedAt}}
+            </span>
+          </li>
+        </ul>
+      {{/view}}
+    {{/each}}
+  </ul>
 </div>

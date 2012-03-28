@@ -20,7 +20,7 @@ When /^I submit an empty task$/ do
 end
 
 Then /^I should see it on the top of the list$/ do
-  find('#tasks tbody').first('tr').should have_content(Task.last.description)
+  find('#tasks').should have_content(Task.last.description)
 end
 
 Given /^there are (\d+) tasks saved$/ do |count|
@@ -44,11 +44,11 @@ Then /^I should see an error alert$/ do
 end
 
 When /^I delete a task$/ do
-  find('#tasks').first('.delete').click
+  find('#tasks').first('.delete .delete').click
 end
 
 Then /^I should not see it on the list$/ do
-  page.should_not have_content('Task 5')
+  find('#tasks').should_not have_content('Task 5')
 end
 
 When /^I mark a task as done$/ do
