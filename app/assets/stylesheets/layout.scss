@@ -5,8 +5,29 @@
 
 body { padding-top: ($navbarHeight + 20) }
 
+*, body, input, button, select, textarea {
+  font-family: 'Imprima', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.label {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 @import "bootstrap-responsive";
 @import "datepicker";
+
+.navbar .brand {
+  span {
+    @include transform(rotate(-25deg)
+                       translate(0, 2px)
+                       scale(2.5));
+    color: $blue;
+    display: inline-block;
+    font-family: 'Gochi Hand', Arial, sans-serif;
+  }
+  @include text-shadow(1px 1px 0px black);
+  font-size: 25px;
+}
 
 #flash-view {
   position: fixed;
