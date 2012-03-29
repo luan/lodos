@@ -1,5 +1,6 @@
 Lodos.tasksController = Ember.ArrayController.create
   content: Lodos.store.findAll(Lodos.Task)
+  percent: 0
   
   createTask: (task) ->
     attrs = 
@@ -23,6 +24,17 @@ Lodos.tasksController = Ember.ArrayController.create
     Lodos.store.commit()
     @set 'animate', true
     true
+
+  contentChanged: (->
+    done = @filter (task) -> task.get('done')
+    percent = Math.round 100 * done.length / @get('length')
+    @set 'percent', percent
+  ).observes('@each')
+
+  setDone: (task, value) ->
+    task.set 'done', value
+    Lodos.store.commit()
+    @contentChanged()
     
   reverse: (->
     @content.toArray().reverse();

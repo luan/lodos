@@ -1,9 +1,7 @@
 @javascript
 Feature: Mark Tasks as done
   In order to distinguish incomplete tasks from complete ones
-  As a user, I want to delete a task
   As a user, I want to mark a task as done
-  
   
   Scenario: Mark task
     Given  there are 5 tasks saved

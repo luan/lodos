@@ -13,6 +13,10 @@ Lodos.TasksIndex = Ember.View.extend
     @_resetTask() if @tasks.createTask @task
     $input.focus()
 
+  barPercent: (->
+    "width: #{@tasks.get('percent')}%;"
+  ).property('tasks.percent')
+
   _resetTask: ->
     @set 'task', Ember.Object.create()
 

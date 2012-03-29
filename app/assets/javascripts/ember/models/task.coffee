@@ -5,10 +5,6 @@ Lodos.Task = DS.Model.extend
   deadline: DS.attr('date')
   created_at: DS.attr('date')
 
-  doneChanged: (->
-    Lodos.store.commit()
-  ).observes('done')
-
   formattedCreatedAt: (->
     date = @get 'created_at'
     @formatDate(date)

@@ -65,7 +65,7 @@ Then /^I should not see it on the list$/ do
 end
 
 When /^I mark a task as done$/ do
-  find('#tasks').first('input[type="checkbox"]').set(true)
+  find('#tasks').first('button.done-button').click
 end
 
 Then /^I should see it strikethrough$/ do
@@ -75,4 +75,19 @@ end
 Then /^there should be (\d+) task done$/ do |count|
   count = count.to_i
   Task.where(done: true).count.should eq(count)
+end
+
+def test_progressbar(percent)
+  within '.progress' do
+    xpath = "//*[@style='width: #{percent}%;']"
+    should have_xpath(xpath)
+  end
+end
+
+Given /^there is a progressbar in (\d+)%$/ do |percent|
+  test_progressbar(percent)
+end
+
+Then /^there should be a progressbar in (\d+)%$/ do |percent|
+  test_progressbar(percent)
 end

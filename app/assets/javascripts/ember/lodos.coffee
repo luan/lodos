@@ -14,9 +14,10 @@ window.Lodos = Ember.Application.create
   flash: (type, message, heading, icon) ->
     Ember.flashQueue.pushFlash type, message, heading, icon
 
+  truth: true
+
 Lodos.store = DS.Store.create
   adapter: DS.RESTAdapter.create
     bulkCommit: false      
-
 
 jQuery -> Lodos.layout.appendTo 'body'

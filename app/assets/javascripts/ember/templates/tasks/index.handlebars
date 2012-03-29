@@ -1,26 +1,44 @@
 {{#formFor "task" id="task" class="form-inline centered"}}
-  <label>
-    Description
-    {{input "description" inputClass="span6" showWrapper=false placeholder="My new task"}}
-  </label>
-  <label>
-    Deadline
-    {{input "deadlineDate" inputClass="input-small date-input" showWrapper=false placeholder="mm/dd/yyyy"}}
-  </label>
-  {{input "deadlineTime" inputClass="input-small time-input" showWrapper=false placeholder="HH:MM"}}
-  {{submit "<i class='icon-white icon-plus'></i> Add Task" submitClass="btn btn-success btn-large"}}
+  <div class="wrap">
+    <label>
+      Description
+      {{input "description" inputClass="span6" showWrapper=false placeholder="My new task"}}
+    </label>
+  </div>
+  
+  <div class="wrap">
+    <label>
+      Deadline
+      {{input "deadlineDate" inputClass="input-small date-input" showWrapper=false placeholder="mm/dd/yyyy"}}
+    </label>
+  </div>
+
+  <div class="wrap">
+   {{input "deadlineTime" inputClass="input-small time-input" showWrapper=false placeholder="HH:MM"}}
+  </div>
+
+  <div class="wrap">
+    {{submit "<i class='icon-white icon-plus'></i> Add Task" submitClass="btn btn-success btn-large"}}
+  </div>
 {{/formFor}}
+  
+<div class="progress progress-success">
+  <div class="bar"
+       {{bindAttr style="barPercent"}}></div>
+</div>
 
 <ul id="tasks">
   {{#each tasks.reverse}}
     {{#view Lodos.TaskShow taskBinding="this"}}
       <ul class="horizontal-list">
         <li>
-          {{view Ember.Checkbox valueBinding="task.done" class="mark-as-done"}}
+          {{#view Lodos.ToggleButton class="btn btn-mini" taskBinding="task" tasksBinding="parentView.tasks"}}
+            <i {{bindAttr class="iconClass"}}></i>
+          {{/view}}
         </li>
-        <li {{bindAttr class="task.done"}}>{{task.description}}</li>
+        <li {{bindAttr class="task.done Lodos.truth:content"}}>{{task.description}}</li>
         <li class="right delete">
-          <a class="delete btn btn-danger btn-mini" {{action "delete"}}>X</a>
+          <a class="delete btn btn-danger btn-mini" {{action "delete"}}><i class="icon-white icon-remove"></i></a>
         </li>
         <li class="right">
           <span class="label label-success">

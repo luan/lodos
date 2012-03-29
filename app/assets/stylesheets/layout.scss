@@ -63,14 +63,39 @@ ul {
 .centered, table#tasks tr :last-child, table#tasks tr :first-child {
   text-align: center;
   label { margin: 0; }
-  
-  input[type="checkbox"] {
-    margin: auto;
-    height: 20px;
-    @include scale(2.0);
-  }
 }
 
-@media (max-width: 979px) {
+div.wrap {
+  display: inline;
+}
+
+@media (max-width: 767px) {
+  ul.horizontal-list { position: relative; }
+
+  ul#tasks li {
+    height: 100px;
+
+    &.content {
+      position: absolute;
+      top: 25px;
+      left: 0;
+    }
+
+    &.right {
+      float: initial !important;
+      position: absolute;
+      top: 0;
+      right: 35px;
+
+      &.delete {
+        right: 0;
+      }
+    }
+  }
+
+  div.wrap {
+    display: block;
+    margin: 10px;
+  }
 }
 
