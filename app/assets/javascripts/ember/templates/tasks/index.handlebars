@@ -5,8 +5,9 @@
   </label>
   <label>
     Deadline
-    {{input "deadline" inputClass="input-medium datetime-input" showWrapper=false placeholder="yyyy-mm-dd HH:MM"}}
+    {{input "deadlineDate" inputClass="input-small date-input" showWrapper=false placeholder="mm/dd/yyyy"}}
   </label>
+  {{input "deadlineTime" inputClass="input-small time-input" showWrapper=false placeholder="HH:MM"}}
   {{submit "<i class='icon-white icon-plus'></i> Add Task" submitClass="btn btn-success btn-large"}}
 {{/formFor}}
 
@@ -29,7 +30,7 @@
           {{#if task.deadline}}
             <span class="label label-important">
               <i class="icon-white icon-exclamation-sign"></i>
-              {{task.deadline}}
+              {{task.formattedDeadline}}
             </span>
           {{/if}}
         </li>

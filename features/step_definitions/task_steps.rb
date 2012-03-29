@@ -4,7 +4,12 @@ $task_deadline = nil
 def submit_task(description, deadline=nil)
   within '#task' do
     fill_in 'description', with: description
-    fill_in 'deadline', with: deadline if deadline
+    if deadline
+      deadline_date, deadline_time = deadline.split(' ')
+      fill_in 'deadlineDate', with: deadline_date
+      fill_in 'deadlineTime', with: deadline_time
+    end
+
     click_button 'Add Task'
   end
 end
@@ -18,7 +23,7 @@ When /^I submit a new task$/ do
 end
 
 When /^I submit a new task with deadline$/ do
-  $task_deadline = Time.new *'2012-10-01 20:30'.split(/[^0-9]/)
+  $task_deadline = 10.days.from_now.strftime("%m/%d/%Y %H:%M")
   submit_task $task_description, $task_deadline
 end
 
@@ -27,7 +32,7 @@ When /^I submit an empty task$/ do
 end
 
 Then /^I should see it on the top of the list$/ do
-  find('#tasks').should have_content(Task.last.description)
+  find('#tasks').should have_content($task_description)
 end
 
 Given /^there are (\d+) tasks saved$/ do |count|
@@ -44,7 +49,7 @@ end
 
 Then /^it should have the right info$/ do
   Task.last.description.should eq($task_description)
-  Task.last.deadline.should eq($task_deadline)
+  Task.last.deadline.strftime("%m/%d/%Y %H:%M").should eq($task_deadline) if $task_deadline
 end
 
 Then /^I should see an error alert$/ do

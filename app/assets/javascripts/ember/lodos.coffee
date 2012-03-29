@@ -18,4 +18,5 @@ Lodos.store = DS.Store.create
   adapter: DS.RESTAdapter.create
     bulkCommit: false      
 
+
 jQuery -> Lodos.layout.appendTo 'body'

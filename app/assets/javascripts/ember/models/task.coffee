@@ -4,13 +4,24 @@ Lodos.Task = DS.Model.extend
   done: DS.attr('boolean')
   deadline: DS.attr('date')
   created_at: DS.attr('date')
-  
+
   doneChanged: (->
     Lodos.store.commit()
   ).observes('done')
 
   formattedCreatedAt: (->
     date = @get 'created_at'
+    @formatDate(date)
+  ).property('created_at')
+
+  formattedDeadline: (->
+    date = @get 'deadline'
+    @formatDate(date)
+  ).property('deadline')
+
+  createdAt: (-> @created_at).property('created_at')
+
+  formatDate: (date) ->
     return "" unless date
     d = 
       year: date.getFullYear()
@@ -23,10 +34,7 @@ Lodos.Task = DS.Model.extend
     for key in keys
       d[key] = "0#{d[key]}" if d[key].length is 1
 
-    "#{d.year}-#{d.month}-#{d.day} #{d.hours}:#{d.minutes}"
-  ).property('created_at')
-
-  createdAt: (-> @created_at).property('created_at')
+    "#{d.month}/#{d.day}/#{d.year} #{d.hours}:#{d.minutes}"
   
   delete: ->
     @deleteRecord()

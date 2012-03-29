@@ -1,7 +1,7 @@
 Lodos.TaskShow = Ember.View.extend
   tagName: "li"
   classNameBindings: ['task.done']
-    
+
   delete: ->
     @$().slideUp =>
       @task.delete()

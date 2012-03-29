@@ -10,13 +10,7 @@ Lodos.TasksIndex = Ember.View.extend
     event.preventDefault()
     $input = @$('input[name="description"]')
     
-    if @task.description
-      @tasks.createTask @task
-      @_resetTask()
-      Lodos.flash 'success', 'created successfully!', 'Task', 'icon-ok-sign'
-    else
-      Lodos.flash 'error', 'failed to create, fill in the description!', 'Task', 'icon-remove-sign'
-
+    @_resetTask() if @tasks.createTask @task
     $input.focus()
 
   _resetTask: ->
@@ -24,4 +18,5 @@ Lodos.TasksIndex = Ember.View.extend
 
   didInsertElement: ->
     @_super()
-    @$('.datetime-input').mask('9999-99-99 99:99')
+    @$('.date-input').mask('99/99/9999')
+    @$('.time-input').mask('99:99')
