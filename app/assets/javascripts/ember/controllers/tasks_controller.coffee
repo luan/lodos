@@ -25,6 +25,28 @@ Lodos.tasksController = Ember.ArrayController.create
     @set 'animate', true
     true
 
+  updateTask: (task) ->
+    if task.get 'deadlineDate'
+      deadlineDateTime = new Date "#{task.deadlineDate} #{task.deadlineTime}"
+      task.set 'deadline', deadlineDateTime
+    else
+      task.set 'deadlineDate', ''
+      task.set 'deadlineTime', ''
+      task.set 'deadline', null
+
+    unless task.get 'description'
+      Lodos.flash 'error', 'failed to save, fill in the description!', 'Task', 'icon-remove-sign'
+      return false
+    else if task.get('deadline') and deadlineDateTime <= new Date()
+      Lodos.flash 'error', 'failed to save, deadline must be in the future!', 'Task', 'icon-remove-sign'
+      return false
+    else
+      Lodos.flash 'success', 'saved successfully!', 'Task', 'icon-ok-sign'
+
+    Lodos.store.commit()
+    @set 'animate', true
+    true
+
   contentChanged: (->
     done = @filter (task) -> task.get('done')
     percent = Math.round 100 * done.length / @get('length')

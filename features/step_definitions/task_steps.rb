@@ -1,7 +1,7 @@
 $task_description = 'Gorgeous task!'
 $task_deadline = nil
 
-def submit_task(description, deadline=nil)
+def edit_task_info(description, deadline=nil)
   within '#task' do
     fill_in 'description', with: description
     if deadline
@@ -9,8 +9,20 @@ def submit_task(description, deadline=nil)
       fill_in 'deadlineDate', with: deadline_date
       fill_in 'deadlineTime', with: deadline_time
     end
+  end
+end
 
+def submit_task(description, deadline=nil)
+  edit_task_info(description, deadline)
+  within '#task' do
     click_button 'Add Task'
+  end
+end
+
+def edit_task(description, deadline=nil)
+  edit_task_info(description, deadline)
+  within '#task' do
+    click_button 'Save Task'
   end
 end
 
@@ -35,7 +47,7 @@ Then /^I should see it on the top of the list$/ do
   find('#tasks').should have_content($task_description)
 end
 
-Given /^there are (\d+) tasks saved$/ do |count|
+Given /^there are (\d+) tasks? saved$/ do |count|
   count = count.to_i
   count.times do |i|
     Task.create description: "Task #{i + 1}"
@@ -90,4 +102,14 @@ end
 
 Then /^there should be a progressbar in (\d+)%$/ do |percent|
   test_progressbar(percent)
+end
+
+When /^I click the edit button for a task$/ do
+  find('#tasks').first('.edit .edit').click
+end
+
+When /^I edit the tasks info$/ do
+  $task_description = "Edited description"
+  $task_deadline = 20.days.from_now.strftime("%m/%d/%Y %H:%M")
+  edit_task $task_description, $task_deadline
 end

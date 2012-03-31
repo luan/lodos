@@ -17,11 +17,17 @@ Lodos.Task = DS.Model.extend
 
   createdAt: (-> @created_at).property('created_at')
 
+  deadlineChanged: (->
+    [date, time] = @formatDate(@get 'deadline').split(' ')
+    @set 'deadlineDate', date
+    @set 'deadlineTime', time
+  ).observes('deadline')
+
   formatDate: (date) ->
     return "" unless date
     d = 
       year: date.getFullYear()
-      month: date.getMonth().toString()
+      month: (date.getMonth() + 1).toString()
       day: date.getDate().toString()
       hours: date.getHours().toString()
       minutes: date.getMinutes().toString()

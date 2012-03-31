@@ -32,6 +32,8 @@ class TasksController < ApplicationController
   private
 
   def filter_nulls
-    params[:task].reject! {|k, v| v == 'null'} if params[:task]
+    params[:task].each do |k, v|
+      params[:task][k] = nil if v == 'null'
+    end if params[:task]
   end
 end

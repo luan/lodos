@@ -69,13 +69,14 @@ ul {
     li:first-child input { @include scale(1.7); }
     li:first-child, li.right { text-align: center; }
     li.right { float: right; font-size: 10px; }
-    li.delete { line-height: initial; }
+    li.delete, li.edit { line-height: initial; }
+    li.edit { padding-right: 0; }
 
     @include horizontal-list;
   }
 }
 
-.done {
+.done li.content {
   text-decoration: line-through;
   font-style: italic;
   @include opacity(0.5);
@@ -106,10 +107,14 @@ div.wrap {
       float: initial !important;
       position: absolute;
       top: 0;
-      right: 35px;
+      right: 65px;
 
       &.delete {
         right: 0;
+      }
+
+      &.edit {
+        right: 30px;
       }
     }
   }

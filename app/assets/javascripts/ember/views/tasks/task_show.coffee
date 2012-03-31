@@ -5,6 +5,10 @@ Lodos.TaskShow = Ember.View.extend
   delete: ->
     @$().slideUp =>
       @task.delete()
+
+  edit: ->
+    parent = @get 'parentView'
+    parent.set 'task', @task
   
   didInsertElement: ->
     @$().hide()

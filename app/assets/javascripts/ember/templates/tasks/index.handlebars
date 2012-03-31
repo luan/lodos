@@ -18,7 +18,12 @@
   </div>
 
   <div class="wrap">
-    {{submit "<i class='icon-white icon-plus'></i> Add Task" submitClass="btn btn-success btn-large"}}
+    {{cancel "<i class='icon-white icon-repeat'></i> Cancel" cancelClass="btn btn-inverse btn-large"}}
+    {{#if content.isNew}}
+      {{submit "<i class='icon-white icon-plus'></i> Add Task" submitClass="btn btn-success btn-large"}}
+    {{else}}
+      {{submit "<i class='icon-white icon-check'></i> Save Task" submitClass="btn btn-info btn-large"}}
+    {{/if}}
   </div>
 {{/formFor}}
   
@@ -38,16 +43,23 @@
         </li>
         <li {{bindAttr class="task.done Lodos.truth:content"}}>{{task.description}}</li>
         <li class="right delete">
-          <a class="delete btn btn-danger btn-mini" {{action "delete"}}><i class="icon-white icon-remove"></i></a>
+          <a class="delete btn btn-danger btn-mini" rel="tooltip" title="Delete Task" {{action "delete"}}>
+            <i class="icon-white icon-trash"></i>
+          </a>
+        </li>
+        <li class="right edit">
+          <a class="edit btn btn-info btn-mini" rel="tooltip" title="Edit Task" {{action "edit"}}>
+            <i class="icon-white icon-edit"></i>
+          </a>
         </li>
         <li class="right">
-          <span class="label label-success">
-            <i class="icon-white icon-plus"></i>
+          <span class="label label-success" rel="tooltip" title="Created at">
+            <i class="icon-white icon-plus-sign"></i>
             {{task.formattedCreatedAt}}
           </span>
           {{#if task.deadline}}
-            <span class="label label-important">
-              <i class="icon-white icon-exclamation-sign"></i>
+            <span class="label label-important" rel="tooltip" title="Deadline">
+              <i class="icon-white icon-time"></i>
               {{task.formattedDeadline}}
             </span>
           {{/if}}

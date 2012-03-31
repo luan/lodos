@@ -4,12 +4,12 @@ Lodos.ToggleButton = Ember.Button.extend
   toggleBinding: 'task.done'
 
   setToggle: ->
-    iconClass = 'icon-edit'
+    iconClass = 'icon-remove-circle'
     buttonStyle = 'btn-warning'
 
     if @toggle
-      iconClass = 'icon-check'
-      buttonStyle= 'btn-success'
+      iconClass = 'icon-ok-sign'
+      buttonStyle = 'btn-success'
 
     iconClass = "icon-white #{iconClass}"
     @set 'iconClass', iconClass
