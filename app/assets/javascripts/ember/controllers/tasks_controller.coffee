@@ -6,9 +6,10 @@ Lodos.tasksController = Ember.ArrayController.create
     attrs = 
       description: task.description
       done: false
+      order: -1
     if task.deadlineDate
       deadlineDateTime = new Date "#{task.deadlineDate} #{task.deadlineTime}"
-      attrs.deadline = deadlineDateTime.toString() 
+      attrs.deadline = deadlineDateTime.toString()
 
     unless attrs.description
       Lodos.flash 'error', 'failed to create, fill in the description!', 'Task', 'icon-remove-sign'
@@ -58,6 +59,7 @@ Lodos.tasksController = Ember.ArrayController.create
     Lodos.store.commit()
     @contentChanged()
     
-  reverse: (->
-    @content.toArray().reverse();
+  sorted: (->
+    @content.toArray().sort (a, b) ->
+      a.get('order') - b.get('order')
   ).property('content.@each').cacheable()

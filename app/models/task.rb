@@ -4,11 +4,12 @@ class Task
   field :description
   field :done, type: Boolean
   field :deadline, type: Time
+  field :order, type: Integer
   
   validates_presence_of :description
   validate :deadline_in_future?
 
-  attr_accessible :description, :deadline, :done
+  attr_accessible :description, :deadline, :done, :order
 
   private
 

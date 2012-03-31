@@ -34,3 +34,13 @@ Lodos.TasksIndex = Ember.View.extend
     @$('.date-input').mask('99/99/9999')
     @$('.time-input').mask('99:99')
     @$('[rel="tooltip"]').tooltip()
+    @$('#tasks').sortable
+      update: =>
+        array = $("#tasks").children().toArray().filter (e) -> e.tagName is 'LI'
+        order = 0
+        for e in array
+          view = Ember.View.views[$(e).attr 'id']
+          view.task.set 'order', order
+          order += 1
+
+        Lodos.store.commit()

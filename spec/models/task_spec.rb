@@ -7,6 +7,7 @@ describe Task do
   it { should allow_mass_assignment_of(:description) }
   it { should allow_mass_assignment_of(:deadline) }
   it { should allow_mass_assignment_of(:done) }
+  it { should allow_mass_assignment_of(:order) }
   
   it 'deadline is in the future' do
     Timecop.freeze

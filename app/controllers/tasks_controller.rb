@@ -12,7 +12,10 @@ class TasksController < ApplicationController
   end
 
   def create
+    order = 0
+    Task.order_by([:order, :asc]).each { |t| t.set :order, order += 1 }
     @task = Task.new(params[:task])
+    @task.order = 0
     @task.save
     render json: { task: @task }
   end

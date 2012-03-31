@@ -28,14 +28,16 @@
 {{/formFor}}
   
 <div class="progress progress-success">
-  <div class="bar"
-       {{bindAttr style="barPercent"}}></div>
+  <div class="bar" {{bindAttr style="barPercent"}}></div>
 </div>
 
 <ul id="tasks">
-  {{#each tasks.reverse}}
+  {{#each tasks.sorted}}
     {{#view Lodos.TaskShow taskBinding="this"}}
       <ul class="horizontal-list">
+        <li class="drag">
+          <i class="icon-resize-vertical"></i>
+        </li>
         <li>
           {{#view Lodos.ToggleButton class="btn btn-mini" taskBinding="task" tasksBinding="parentView.tasks"}}
             <i {{bindAttr class="iconClass"}}></i>

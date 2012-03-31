@@ -71,6 +71,7 @@ ul {
     li.right { float: right; font-size: 10px; }
     li.delete, li.edit { line-height: initial; }
     li.edit { padding-right: 0; }
+    li.drag { padding: 0; margin: 0; }
 
     @include horizontal-list;
   }

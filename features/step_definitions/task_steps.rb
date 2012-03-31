@@ -56,6 +56,7 @@ end
 
 Then /^there should be (\d+) tasks? saved$/ do |count|
   count = count.to_i
+  wait_until { Task.count == count }
   Task.count.should eq(count)
 end
 
@@ -73,7 +74,7 @@ When /^I delete a task$/ do
 end
 
 Then /^I should not see it on the list$/ do
-  find('#tasks').should_not have_content('Task 5')
+  find('#tasks').should_not have_content('Task 1')
 end
 
 When /^I mark a task as done$/ do
@@ -112,4 +113,26 @@ When /^I edit the tasks info$/ do
   $task_description = "Edited description"
   $task_deadline = 20.days.from_now.strftime("%m/%d/%Y %H:%M")
   edit_task $task_description, $task_deadline
+end
+
+Given /^there are (\d+) task saved with order$/ do |count|
+  count = count.to_i
+  count.times do |i|
+    Task.create description: "Task #{i + 1}", order: i
+  end
+end
+
+Then /^the top of the list should have the lower order$/ do
+  task = Task.order_by([:order, :asc]).first
+  all('#tasks > li').first.should have_content(task.description)
+end
+
+When /^I drag the last task to the top$/ do
+  all('#tasks > li').last.drag_to all('#tasks > li').first
+  wait_until { Task.order_by([:order, :asc]).first.description == "Task 5" }
+end
+
+Then /^it should be the task that I dragged$/ do
+  all('#tasks > li').first.should have_content("Task 5")
+  Task.order_by([:order, :asc]).first.description.should eq("Task 5")
 end
