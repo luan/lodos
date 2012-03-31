@@ -2,6 +2,11 @@ require 'spec_helper'
 
 describe Task do
   it { should validate_presence_of(:description) }
+  it { should_not allow_mass_assignment_of(:created_at) }
+  it { should_not allow_mass_assignment_of(:created_at) }
+  it { should allow_mass_assignment_of(:description) }
+  it { should allow_mass_assignment_of(:deadline) }
+  it { should allow_mass_assignment_of(:done) }
   
   it 'deadline is in the future' do
     Timecop.freeze

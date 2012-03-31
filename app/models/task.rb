@@ -8,6 +8,8 @@ class Task
   validates_presence_of :description
   validate :deadline_in_future?
 
+  attr_accessible :description, :deadline, :done
+
   private
 
   def deadline_in_future?
