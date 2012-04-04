@@ -29,6 +29,11 @@ body { padding-top: ($navbarHeight + 20) }
   font-size: 25px;
 }
 
+ul.horizontal-list li span.label {
+  margin-left: 0;
+  margin-right: 5px;
+}
+
 #flash-view {
   position: fixed;
   top: 0px;

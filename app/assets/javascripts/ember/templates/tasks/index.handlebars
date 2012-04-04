@@ -43,7 +43,7 @@
             <i {{bindAttr class="iconClass"}}></i>
           {{/view}}
         </li>
-        <li {{bindAttr class="task.done Lodos.truth:content"}}>{{task.description}}</li>
+        <li {{bindAttr class="task.done Lodos.truth:content"}}>{{{description}}}</li>
         <li class="right delete">
           <a class="delete btn btn-danger btn-mini" rel="tooltip" title="Delete Task" {{action "delete"}}>
             <i class="icon-white icon-trash"></i>
