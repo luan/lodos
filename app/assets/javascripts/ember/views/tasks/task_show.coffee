@@ -5,8 +5,8 @@ Lodos.TaskShow = Ember.View.extend
   description: (->
     descr = @get('task').get('description')
     descr = descr.replace '[feature]', '<span class="label label-success">feature</span>'
-    descr = descr.replace '[bug]', '<span class="label label-danger">feature</span>'
-    descr = descr.replace '[layout]', '<span class="label label-info">feature</span>'
+    descr = descr.replace '[bug]', '<span class="label label-important">bug</span>'
+    descr = descr.replace '[layout]', '<span class="label label-info">layout</span>'
     descr
   ).property('task.description')
 
